@@ -216,4 +216,40 @@ Read through the lens of the 5 gap buckets from Task 3 — who wins where, and w
 
 ---
 
-*Status: ICP segments, billing-needs mapping, gap analysis, and competitive analysis drafted (steps 1-4 of 7). Next: develop a prioritized roadmap (task 5).*
+## 5. Prioritized Roadmap
+
+The 5 gap buckets from Task 3, RICE-scored using the competitive urgency signal from Task 4, sequenced into roadmap horizons. RICE = (Reach × Impact × Confidence) / Effort.
+
+| Bucket | Reach | Impact | Confidence | Effort (mo) | RICE Score |
+|---|---|---|---|---|---|
+| **B1 · Real-Time Enforcement & Scale** | 9 — Segments 1 & 3, near-existential for foundation-model providers | 3 (massive) — blocks Chargebee's most immediate AI-native segments outright | 90% — Amberflo/Meteroid prove both demand and feasibility | 12 — real-time enforcement + high-volume ingestion rework, two hard problems bundled | **2.03** |
+| **B4 · Data Integrity & Audit** | 5 — Segment 4 (UBB-3) plus general correction needs (CB-9) across all UBB customers | 2 (high) — trust/compliance matters a lot for enterprise deals | 60% — Orb/Lago/BillingPlatform solve data integrity broadly, but nobody solves UBB-3 outcome-validation — an industry-wide gap | 6 — audit trail + dispute workflow, contained scope | **1.00** |
+| **B2 · Pricing & Plan Flexibility** | 6 — broad, touches any UBB customer wanting ramps/mid-term changes, especially Segments 1 & 6 | 2 (high) — blocks smooth pricing evolution, though workarounds exist (wait for renewal) | 80% — Orb/Metronome prove demand; Chargebee's core subscription model needs real changes | 10 — 4 gaps bundled (ramps, mixed frequencies, mid-term changes, entitlement overrides) | **0.96** |
+| **B5 · Subscription Lifecycle Ops** | 3 — single gap, narrower reach but relevant across segments with metered components | 1 (medium) | 90% — Zuora/Maxio prove it's a solved problem elsewhere — high confidence | 3 — single, contained gap | **0.90** |
+| **B3 · Billing Cycle & Scheduling Constraints** | 5 — mostly enterprise ops hygiene (Segment 5 + general) | 1 (medium) | 70% — Zuora/BillingPlatform prove feasibility, but it's a moderate architectural lift | 8 — calendar-billing engine changes are a real lift | **0.44** |
+
+### Roadmap horizons
+
+- **Now:** **B1** (top RICE score, competitively urgent — Amberflo/Meteroid are AI-native specialists directly threatening Chargebee's AI-segment expansion) running in parallel with **B5** (cheap, low-effort quick win on a different engineering surface — doesn't compete with B1 for the same resources).
+- **Next:** **B4** (a chance to lead, not just catch up — nobody in the market solves UBB-3 today) and **B2** (broad reach, table-stakes catch-up against Orb/Metronome for pricing evolution).
+- **Later:** **B3** (lowest RICE score, most enterprise-specific, and the least differentiation upside — catching up to Zuora/BillingPlatform here can wait).
+
+---
+
+## 6. Value Story for Organizational Buy-In
+
+What this roadmap is worth, framed by value type per horizon — not fabricated revenue/TAM figures, since the research doesn't support that precision.
+
+**Why now:** The market consolidated in 2026 (Stripe+Metronome, Adyen+Orb, Salesforce+m3ter) — competitors aren't point solutions anymore, they're bundled into platforms Chargebee's own prospects already use. Every quarter of delay compounds this gap.
+
+| Horizon | Investment | Unlocks | Value Type | Narrative |
+|---|---|---|---|---|
+| **Now** | 15 person-months (B1 + B5) | Credible entry into Segments 1 & 3 (AI Coding/Dev Tools, Foundation Model/API Providers) | Growth — removes a sales disqualifier | Without real-time enforcement, Chargebee cannot win logos like Replit- or OpenAI-scale accounts at all — this isn't an incremental improvement, it's the entry ticket to the fastest-growing AI-native segments. |
+| **Next** | 16 person-months (B4 + B2) | B4: first-mover position in Segment 4 (Outcome-Based AI) since no competitor solves UBB-3; B2: unblocks pricing evolution for all existing UBB customers | Category leadership (B4) + retention/expansion (B2) | B4 is a chance to define the outcome-billing category rather than follow Orb/Metronome/Zuora into it. B2 protects expansion revenue on customers already on UBB who currently can't get a ramp or mid-term change without waiting for renewal. |
+| **Later** | 8 person-months (B3) | Enterprise scheduling parity (Segment 5 + general ops) | Defensive retention | Lowest urgency — protects existing enterprise relationships from Zuora/BillingPlatform-style poaching, but doesn't open new segments. |
+
+**Cost of inaction:** Staying flat means ceding Segments 1, 3, and 4 to Stripe+Metronome, Adyen+Orb, and Flexprice by default — not because Chargebee loses deals on price, but because it's structurally disqualified before pricing even comes up.
+
+---
+
+*Status: ICP segments, billing-needs mapping, gap analysis, competitive analysis, prioritized roadmap, and value story drafted (steps 1-6 of 7). Next: guide the team on building one capability as a POC (task 7).*

@@ -77,6 +77,20 @@ export default function Sidebar() {
             Prioritization
           </span>
         </Link>
+
+        <Link
+          href="/value"
+          className={`mt-1 flex items-center gap-2 px-3 py-3 transition-colors ${
+            isActive("/value") ? "text-zinc-900" : "text-zinc-800 hover:text-zinc-900"
+          }`}
+        >
+          <svg viewBox="0 0 20 20" fill="none" className="h-5 w-5 shrink-0 text-zinc-500">
+            <path d="M10 3l2.2 4.5 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5-3.6-3.5 5-.7L10 3z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
+          </svg>
+          <span className={`text-base ${isActive("/value") ? "font-medium" : ""}`}>
+            Value Story
+          </span>
+        </Link>
       </nav>
 
       <div className="border-t border-zinc-200 p-3 text-xs text-zinc-400">

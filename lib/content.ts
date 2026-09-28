@@ -382,3 +382,156 @@ export const bucketCompetitors: BucketCompetitor[] = [
 
 export const competitiveFinding =
   "Metronome tracks usage and generates billing data, but does not enforce access at runtime — teams need a separate entitlement system to control access before billing. This isn't Metronome handling it poorly; billing systems were never designed to operate as real-time enforcement infrastructure. This applies broadly — no platform in the market natively solves the UBB-3 outcome-validation gap (Bucket 4, tied to Segment 4). That remains an application-layer problem everywhere.";
+
+export interface RiceScore {
+  bucketId: number;
+  reach: number;
+  reachRationale: string;
+  impact: number;
+  impactRationale: string;
+  confidence: number;
+  confidenceRationale: string;
+  effort: number;
+  effortRationale: string;
+  score: number;
+}
+
+export const riceScores: RiceScore[] = [
+  {
+    bucketId: 1,
+    reach: 9,
+    reachRationale: "Segments 1 & 3, near-existential for foundation-model providers.",
+    impact: 3,
+    impactRationale: "Massive — blocks Chargebee's most immediate AI-native segments outright.",
+    confidence: 0.9,
+    confidenceRationale: "Amberflo/Meteroid prove both demand and feasibility.",
+    effort: 12,
+    effortRationale:
+      "Real-time enforcement + high-volume ingestion rework — two hard problems bundled in one bucket.",
+    score: 2.03,
+  },
+  {
+    bucketId: 4,
+    reach: 5,
+    reachRationale:
+      "Segment 4 (UBB-3) plus general correction needs (CB-9) across all UBB customers.",
+    impact: 2,
+    impactRationale: "High — trust/compliance matters a lot for enterprise deals.",
+    confidence: 0.6,
+    confidenceRationale:
+      "Orb/Lago/BillingPlatform solve data integrity broadly, but nobody solves UBB-3 outcome-validation — an industry-wide gap.",
+    effort: 6,
+    effortRationale: "Audit trail + dispute workflow — contained scope.",
+    score: 1.0,
+  },
+  {
+    bucketId: 2,
+    reach: 6,
+    reachRationale:
+      "Broad — touches any UBB customer wanting ramps/mid-term changes, especially Segments 1 & 6.",
+    impact: 2,
+    impactRationale: "High — blocks smooth pricing evolution, though workarounds exist (wait for renewal).",
+    confidence: 0.8,
+    confidenceRationale: "Orb/Metronome prove demand; Chargebee's core subscription model needs real changes.",
+    effort: 10,
+    effortRationale: "4 gaps bundled — ramps, mixed frequencies, mid-term changes, entitlement overrides.",
+    score: 0.96,
+  },
+  {
+    bucketId: 5,
+    reach: 3,
+    reachRationale: "Single gap, narrower reach but relevant across segments with metered components.",
+    impact: 1,
+    impactRationale: "Medium.",
+    confidence: 0.9,
+    confidenceRationale: "Zuora/Maxio prove it's a solved problem elsewhere — high confidence.",
+    effort: 3,
+    effortRationale: "Single, contained gap.",
+    score: 0.9,
+  },
+  {
+    bucketId: 3,
+    reach: 5,
+    reachRationale: "Mostly enterprise ops hygiene (Segment 5 + general).",
+    impact: 1,
+    impactRationale: "Medium.",
+    confidence: 0.7,
+    confidenceRationale: "Zuora/BillingPlatform prove feasibility, but it's a moderate architectural lift.",
+    effort: 8,
+    effortRationale: "Calendar-billing engine changes are a real lift.",
+    score: 0.44,
+  },
+];
+
+export interface RoadmapHorizon {
+  id: number;
+  name: string;
+  bucketIds: number[];
+  rationale: string;
+}
+
+export const roadmapHorizons: RoadmapHorizon[] = [
+  {
+    id: 1,
+    name: "Now",
+    bucketIds: [1, 5],
+    rationale:
+      "B1 is the top RICE score and competitively urgent — Amberflo/Meteroid are AI-native specialists directly threatening Chargebee's AI-segment expansion. B5 runs in parallel as a cheap, low-effort quick win on a different engineering surface, so it doesn't compete with B1 for the same resources.",
+  },
+  {
+    id: 2,
+    name: "Next",
+    bucketIds: [4, 2],
+    rationale:
+      "B4 is a chance to lead, not just catch up — nobody in the market solves UBB-3 today. B2 is broad-reach, table-stakes catch-up against Orb/Metronome for pricing evolution.",
+  },
+  {
+    id: 3,
+    name: "Later",
+    bucketIds: [3],
+    rationale:
+      "Lowest RICE score, most enterprise-specific, and the least differentiation upside — catching up to Zuora/BillingPlatform here can wait.",
+  },
+];
+
+export interface ValueHorizon {
+  horizonId: number;
+  investment: string;
+  unlocks: string;
+  valueType: string;
+  narrative: string;
+}
+
+export const valueHorizons: ValueHorizon[] = [
+  {
+    horizonId: 1,
+    investment: "15 person-months (B1 + B5)",
+    unlocks: "Credible entry into Segments 1 & 3 (AI Coding/Dev Tools, Foundation Model/API Providers)",
+    valueType: "Growth — removes a sales disqualifier",
+    narrative:
+      "Without real-time enforcement, Chargebee cannot win logos like Replit- or OpenAI-scale accounts at all — this isn't an incremental improvement, it's the entry ticket to the fastest-growing AI-native segments.",
+  },
+  {
+    horizonId: 2,
+    investment: "16 person-months (B4 + B2)",
+    unlocks:
+      "B4: first-mover position in Segment 4 (Outcome-Based AI) since no competitor solves UBB-3; B2: unblocks pricing evolution for all existing UBB customers",
+    valueType: "Category leadership (B4) + retention/expansion (B2)",
+    narrative:
+      "B4 is a chance to define the outcome-billing category rather than follow Orb/Metronome/Zuora into it. B2 protects expansion revenue on customers already on UBB who currently can't get a ramp or mid-term change without waiting for renewal.",
+  },
+  {
+    horizonId: 3,
+    investment: "8 person-months (B3)",
+    unlocks: "Enterprise scheduling parity (Segment 5 + general ops)",
+    valueType: "Defensive retention",
+    narrative:
+      "Lowest urgency — protects existing enterprise relationships from Zuora/BillingPlatform-style poaching, but doesn't open new segments.",
+  },
+];
+
+export const whyNowNote =
+  "The market consolidated in 2026 (Stripe+Metronome, Adyen+Orb, Salesforce+m3ter) — competitors aren't point solutions anymore, they're bundled into platforms Chargebee's own prospects already use. Every quarter of delay compounds this gap.";
+
+export const costOfInactionNote =
+  "Staying flat means ceding Segments 1, 3, and 4 to Stripe+Metronome, Adyen+Orb, and Flexprice by default — not because Chargebee loses deals on price, but because it's structurally disqualified before pricing even comes up.";
