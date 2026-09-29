@@ -535,3 +535,50 @@ export const whyNowNote =
 
 export const costOfInactionNote =
   "Staying flat means ceding Segments 1, 3, and 4 to Stripe+Metronome, Adyen+Orb, and Flexprice by default — not because Chargebee loses deals on price, but because it's structurally disqualified before pricing even comes up.";
+
+export const implementationChoiceNote =
+  "Bucket 1 (Real-Time Enforcement & Scale) is the chosen capability to guide the team on — it's the top RICE score and the 'Now' horizon in the roadmap. The approach below adds real-time enforcement as a layer in front of Chargebee's existing batch billing system, rather than rewriting it — directly addressing Bucket 1's root cause: Chargebee is designed as a billing system of record, not a real-time usage control plane.";
+
+export interface ImplementationFlowStep {
+  id: number;
+  title: string;
+  description: string;
+}
+
+export const implementationFlowSteps: ImplementationFlowStep[] = [
+  {
+    id: 1,
+    title: "App calls Reserve",
+    description:
+      "Before running a metered action (e.g. an inference call), the customer's app calls Reserve on a new Real-Time Balance Service, passing an estimated usage amount.",
+  },
+  {
+    id: 2,
+    title: "Check the fast balance cache",
+    description:
+      "The Real-Time Balance Service checks a fast, in-memory balance cache kept in sync from the ledger — not the existing batch-rated ledger directly, which is too slow for this path.",
+  },
+  {
+    id: 3,
+    title: "Approve or deny",
+    description:
+      "If the balance covers the reserve, the service holds the amount and returns Approved. If not, it returns Denied and the app blocks the action before it ever runs — this is the hard-stop UBB-1 solves.",
+  },
+  {
+    id: 4,
+    title: "App proceeds",
+    description: "The app only runs the actual metered action after receiving Approved.",
+  },
+  {
+    id: 5,
+    title: "App calls Confirm",
+    description:
+      "Once the action completes, the app calls Confirm with the actual consumed amount (which may differ from the estimate), and the service finalizes the hold against the cached balance.",
+  },
+  {
+    id: 6,
+    title: "Async event feeds both paths",
+    description:
+      "The same usage event is published to an event queue in parallel — decoupled, high-throughput ingestion instead of direct synchronous writes (addressing UBB-2's scale problem). The queue feeds the Real-Time Balance cache to keep it in sync, and Chargebee's existing batch metering/rating pipeline, unchanged, which still generates the invoice at cycle end.",
+  },
+];

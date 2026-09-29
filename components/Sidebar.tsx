@@ -91,6 +91,22 @@ export default function Sidebar() {
             Value Story
           </span>
         </Link>
+
+        <Link
+          href="/implementation-approach"
+          className={`mt-1 flex items-center gap-2 px-3 py-3 transition-colors ${
+            isActive("/implementation-approach") ? "text-zinc-900" : "text-zinc-800 hover:text-zinc-900"
+          }`}
+        >
+          <svg viewBox="0 0 20 20" fill="none" className="h-5 w-5 shrink-0 text-zinc-500">
+            <rect x="3" y="3" width="6" height="6" rx="1.2" stroke="currentColor" strokeWidth="1.4" />
+            <rect x="11" y="11" width="6" height="6" rx="1.2" stroke="currentColor" strokeWidth="1.4" />
+            <path d="M6 9v3a2 2 0 0 0 2 2h2" stroke="currentColor" strokeWidth="1.4" fill="none" />
+          </svg>
+          <span className={`text-base ${isActive("/implementation-approach") ? "font-medium" : ""}`}>
+            Implementation Approach
+          </span>
+        </Link>
       </nav>
 
       <div className="border-t border-zinc-200 p-3 text-xs text-zinc-400">

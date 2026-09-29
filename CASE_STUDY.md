@@ -252,4 +252,17 @@ What this roadmap is worth, framed by value type per horizon — not fabricated 
 
 ---
 
-*Status: ICP segments, billing-needs mapping, gap analysis, competitive analysis, prioritized roadmap, and value story drafted (steps 1-6 of 7). Next: guide the team on building one capability as a POC (task 7).*
+## 7. Implementation Approach
+
+Bucket 1 (Real-Time Enforcement & Scale) is the chosen capability to guide the team on — it's the top RICE score and the "Now" horizon in the roadmap. The approach below adds real-time enforcement as a layer in front of Chargebee's existing batch billing system, rather than rewriting it — directly addressing Bucket 1's root cause: Chargebee is designed as a billing system of record, not a real-time usage control plane. This is the same authorize → act → confirm pattern Credyt/Stigg use (Task 4), with the existing invoicing pipeline fed asynchronously and left untouched. *(An interactive flow diagram of this is on the app's Implementation Approach page.)*
+
+1. **App calls Reserve.** Before running a metered action (e.g. an inference call), the customer's app calls Reserve on a new Real-Time Balance Service, passing an estimated usage amount.
+2. **Check the fast balance cache.** The service checks a fast, in-memory balance cache kept in sync from the ledger — not the existing batch-rated ledger directly, which is too slow for this path.
+3. **Approve or deny.** If the balance covers the reserve, the service holds the amount and returns Approved. If not, it returns Denied and the app blocks the action before it ever runs — this is the hard-stop UBB-1 solves.
+4. **App proceeds.** The app only runs the actual metered action after receiving Approved.
+5. **App calls Confirm.** Once the action completes, the app calls Confirm with the actual consumed amount (which may differ from the estimate), and the service finalizes the hold against the cached balance.
+6. **Async event feeds both paths.** The same usage event is published to an event queue in parallel — decoupled, high-throughput ingestion instead of direct synchronous writes (addressing UBB-2's scale problem). The queue feeds the Real-Time Balance cache to keep it in sync, and Chargebee's existing batch metering/rating pipeline, unchanged, which still generates the invoice at cycle end.
+
+---
+
+*Status: All 7 tasks drafted — ICP segments, billing-needs mapping, gap analysis, competitive analysis, prioritized roadmap, value story, and implementation approach.*
