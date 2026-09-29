@@ -11,7 +11,7 @@ export default function ImplementationApproachPage() {
       </div>
 
       <div className="overflow-x-auto rounded-lg border border-zinc-200 bg-white p-6">
-        <svg viewBox="0 0 700 940" className="mx-auto w-full max-w-2xl">
+        <svg viewBox="0 0 760 700" className="mx-auto w-full max-w-3xl">
           <defs>
             <marker
               id="arrow"
@@ -26,71 +26,84 @@ export default function ImplementationApproachPage() {
             </marker>
           </defs>
 
-          {/* 1. Customer App */}
-          <rect x="220" y="15" width="260" height="55" rx="10" className="fill-blue-50 stroke-blue-400" strokeWidth="1.5" />
-          <text x="350" y="48" textAnchor="middle" className="fill-blue-900 text-[13px] font-semibold">Customer App</text>
+          {/* Swimlanes */}
+          <rect x="10" y="5" width="350" height="680" rx="8" className="fill-blue-50/40" />
+          <rect x="400" y="5" width="350" height="680" rx="8" className="fill-zinc-100/60" />
+          <line x1="380" y1="5" x2="380" y2="685" className="stroke-zinc-300" strokeWidth="1.5" strokeDasharray="5 4" />
+          <text x="185" y="26" textAnchor="middle" className="fill-zinc-500 text-[11px] font-semibold uppercase tracking-wide">Application</text>
+          <text x="575" y="26" textAnchor="middle" className="fill-zinc-500 text-[11px] font-semibold uppercase tracking-wide">Chargebee</text>
 
-          <line x1="350" y1="70" x2="350" y2="105" className="stroke-zinc-400" strokeWidth="1.5" markerEnd="url(#arrow)" />
-          <text x="360" y="92" className="fill-zinc-500 text-[10px]">Reserve(estimated usage)</text>
+          {/* 1. App calls Reserve */}
+          <rect x="30" y="45" width="310" height="55" rx="10" className="fill-blue-100 stroke-blue-400" strokeWidth="1.5" />
+          <text x="185" y="68" textAnchor="middle" className="fill-blue-900 text-[12px] font-semibold">App calls Reserve</text>
+          <text x="185" y="84" textAnchor="middle" className="fill-blue-700 text-[10px]">(estimated usage)</text>
 
-          {/* 2. Real-Time Balance Service */}
-          <rect x="190" y="108" width="320" height="60" rx="10" className="fill-blue-50 stroke-blue-400" strokeWidth="1.5" />
-          <text x="350" y="134" textAnchor="middle" className="fill-blue-900 text-[13px] font-semibold">Real-Time Balance Service</text>
-          <text x="350" y="152" textAnchor="middle" className="fill-blue-700 text-[10px]">checks fast in-memory balance cache</text>
+          <line x1="340" y1="72" x2="400" y2="80" className="stroke-zinc-400" strokeWidth="1.5" markerEnd="url(#arrow)" />
 
-          <line x1="350" y1="168" x2="350" y2="205" className="stroke-zinc-400" strokeWidth="1.5" markerEnd="url(#arrow)" />
+          {/* 2. Real-Time Balance Service checks cache */}
+          <rect x="410" y="45" width="330" height="60" rx="10" className="fill-blue-100 stroke-blue-400" strokeWidth="1.5" />
+          <text x="575" y="68" textAnchor="middle" className="fill-blue-900 text-[12px] font-semibold">Real-Time Balance Service</text>
+          <text x="575" y="84" textAnchor="middle" className="fill-blue-700 text-[10px]">checks fast in-memory balance cache</text>
+
+          <line x1="575" y1="105" x2="575" y2="135" className="stroke-zinc-400" strokeWidth="1.5" markerEnd="url(#arrow)" />
 
           {/* Decision diamond */}
-          <polygon points="350,205 450,255 350,305 250,255" className="fill-amber-50 stroke-amber-400" strokeWidth="1.5" />
-          <text x="350" y="251" textAnchor="middle" className="fill-amber-900 text-[11px] font-semibold">Balance</text>
-          <text x="350" y="264" textAnchor="middle" className="fill-amber-900 text-[11px] font-semibold">sufficient?</text>
+          <polygon points="575,135 655,190 575,245 495,190" className="fill-amber-50 stroke-amber-400" strokeWidth="1.5" />
+          <text x="575" y="186" textAnchor="middle" className="fill-amber-900 text-[11px] font-semibold">Balance</text>
+          <text x="575" y="199" textAnchor="middle" className="fill-amber-900 text-[11px] font-semibold">sufficient?</text>
 
-          {/* No branch -> Denied */}
-          <line x1="450" y1="255" x2="560" y2="255" className="stroke-zinc-400" strokeWidth="1.5" markerEnd="url(#arrow)" />
-          <text x="465" y="247" className="fill-zinc-500 text-[10px]">No</text>
-          <rect x="560" y="228" width="120" height="55" rx="10" className="fill-rose-50 stroke-rose-400" strokeWidth="1.5" />
-          <text x="620" y="252" textAnchor="middle" className="fill-rose-900 text-[11px] font-semibold">Denied</text>
-          <text x="620" y="267" textAnchor="middle" className="fill-rose-700 text-[10px]">app blocks action</text>
+          {/* Yes -> back to Application: Approved */}
+          <line x1="495" y1="190" x2="340" y2="192" className="stroke-zinc-400" strokeWidth="1.5" markerEnd="url(#arrow)" />
+          <text x="420" y="182" className="fill-emerald-700 text-[10px] font-medium">Yes</text>
 
-          {/* Yes branch */}
-          <line x1="350" y1="305" x2="350" y2="340" className="stroke-zinc-400" strokeWidth="1.5" markerEnd="url(#arrow)" />
-          <text x="360" y="327" className="fill-zinc-500 text-[10px]">Yes — Approved, hold placed</text>
+          <rect x="30" y="165" width="310" height="55" rx="10" className="fill-emerald-50 stroke-emerald-400" strokeWidth="1.5" />
+          <text x="185" y="188" textAnchor="middle" className="fill-emerald-900 text-[12px] font-semibold">Approved — hold placed</text>
+          <text x="185" y="204" textAnchor="middle" className="fill-emerald-700 text-[10px]">App runs the metered action</text>
 
-          {/* 3. App runs action */}
-          <rect x="220" y="343" width="260" height="55" rx="10" className="fill-emerald-50 stroke-emerald-400" strokeWidth="1.5" />
-          <text x="350" y="376" textAnchor="middle" className="fill-emerald-900 text-[13px] font-semibold">App runs the metered action</text>
+          {/* No -> back to Application: Denied */}
+          <path d="M575,245 L575,277 L340,277" className="stroke-zinc-400" strokeWidth="1.5" fill="none" markerEnd="url(#arrow)" />
+          <text x="585" y="262" className="fill-rose-700 text-[10px] font-medium">No</text>
 
-          <line x1="350" y1="398" x2="350" y2="433" className="stroke-zinc-400" strokeWidth="1.5" markerEnd="url(#arrow)" />
+          <rect x="190" y="250" width="150" height="55" rx="10" className="fill-rose-50 stroke-rose-400" strokeWidth="1.5" />
+          <text x="265" y="273" textAnchor="middle" className="fill-rose-900 text-[11px] font-semibold">Denied</text>
+          <text x="265" y="288" textAnchor="middle" className="fill-rose-700 text-[10px]">app blocks action (stop)</text>
 
-          {/* 4. Confirm */}
-          <rect x="220" y="436" width="260" height="55" rx="10" className="fill-emerald-50 stroke-emerald-400" strokeWidth="1.5" />
-          <text x="350" y="461" textAnchor="middle" className="fill-emerald-900 text-[13px] font-semibold">App calls Confirm</text>
-          <text x="350" y="477" textAnchor="middle" className="fill-emerald-700 text-[10px]">(actual usage, finalizes the hold)</text>
+          {/* Continue from Approved down to Confirm, routed left of the Denied box */}
+          <path d="M100,220 L100,372 L30,372" className="stroke-zinc-400" strokeWidth="1.5" fill="none" markerEnd="url(#arrow)" />
 
-          {/* branch to cache sync (left) and event queue (down) */}
-          <line x1="220" y1="463" x2="130" y2="463" className="stroke-zinc-400" strokeWidth="1.5" markerEnd="url(#arrow)" />
-          <line x1="130" y1="463" x2="130" y2="138" className="stroke-zinc-400" strokeWidth="1.5" strokeDasharray="4 4" markerEnd="url(#arrow)" />
-          <text x="10" y="300" className="fill-zinc-500 text-[10px]">keeps cache in sync</text>
+          {/* 3. App calls Confirm */}
+          <rect x="30" y="345" width="310" height="55" rx="10" className="fill-blue-100 stroke-blue-400" strokeWidth="1.5" />
+          <text x="185" y="368" textAnchor="middle" className="fill-blue-900 text-[12px] font-semibold">App calls Confirm</text>
+          <text x="185" y="384" textAnchor="middle" className="fill-blue-700 text-[10px]">(actual usage)</text>
 
-          <line x1="350" y1="491" x2="350" y2="526" className="stroke-zinc-400" strokeWidth="1.5" markerEnd="url(#arrow)" />
-          <text x="360" y="513" className="fill-zinc-500 text-[10px]">publish (async, high-throughput)</text>
+          <line x1="340" y1="372" x2="400" y2="372" className="stroke-zinc-400" strokeWidth="1.5" markerEnd="url(#arrow)" />
+
+          {/* 4. Chargebee finalizes hold + publishes event */}
+          <rect x="410" y="345" width="330" height="55" rx="10" className="fill-blue-100 stroke-blue-400" strokeWidth="1.5" />
+          <text x="575" y="368" textAnchor="middle" className="fill-blue-900 text-[12px] font-semibold">Finalize hold on cached balance</text>
+          <text x="575" y="384" textAnchor="middle" className="fill-blue-700 text-[10px]">publish usage event (async)</text>
+
+          <line x1="575" y1="400" x2="575" y2="430" className="stroke-zinc-400" strokeWidth="1.5" markerEnd="url(#arrow)" />
 
           {/* 5. Event Queue */}
-          <rect x="220" y="529" width="260" height="55" rx="10" className="fill-purple-50 stroke-purple-400" strokeWidth="1.5" />
-          <text x="350" y="562" textAnchor="middle" className="fill-purple-900 text-[13px] font-semibold">Event Queue</text>
+          <rect x="410" y="430" width="330" height="55" rx="10" className="fill-purple-50 stroke-purple-400" strokeWidth="1.5" />
+          <text x="575" y="462" textAnchor="middle" className="fill-purple-900 text-[12px] font-semibold">Event Queue (high-throughput)</text>
 
-          <line x1="350" y1="584" x2="350" y2="619" className="stroke-zinc-400" strokeWidth="1.5" markerEnd="url(#arrow)" />
+          {/* loop back to sync the balance cache */}
+          <path d="M410,445 L395,445 L395,75 L410,75" className="stroke-zinc-400" strokeWidth="1.5" strokeDasharray="4 4" fill="none" markerEnd="url(#arrow)" />
+
+          <line x1="575" y1="485" x2="575" y2="515" className="stroke-zinc-400" strokeWidth="1.5" markerEnd="url(#arrow)" />
 
           {/* 6. Existing rating pipeline */}
-          <rect x="170" y="622" width="360" height="60" rx="10" className="fill-zinc-100 stroke-zinc-400" strokeWidth="1.5" />
-          <text x="350" y="648" textAnchor="middle" className="fill-zinc-800 text-[13px] font-semibold">Existing Batch Metering &amp; Rating Pipeline</text>
-          <text x="350" y="666" textAnchor="middle" className="fill-zinc-600 text-[10px]">unchanged</text>
+          <rect x="410" y="515" width="330" height="60" rx="10" className="fill-zinc-100 stroke-zinc-400" strokeWidth="1.5" />
+          <text x="575" y="541" textAnchor="middle" className="fill-zinc-800 text-[12px] font-semibold">Existing Batch Metering &amp; Rating Pipeline</text>
+          <text x="575" y="558" textAnchor="middle" className="fill-zinc-600 text-[10px]">unchanged</text>
 
-          <line x1="350" y1="682" x2="350" y2="717" className="stroke-zinc-400" strokeWidth="1.5" markerEnd="url(#arrow)" />
+          <line x1="575" y1="575" x2="575" y2="605" className="stroke-zinc-400" strokeWidth="1.5" markerEnd="url(#arrow)" />
 
           {/* 7. Invoice */}
-          <rect x="220" y="720" width="260" height="55" rx="10" className="fill-zinc-100 stroke-zinc-400" strokeWidth="1.5" />
-          <text x="350" y="753" textAnchor="middle" className="fill-zinc-800 text-[13px] font-semibold">Invoice generated at cycle end</text>
+          <rect x="410" y="605" width="330" height="55" rx="10" className="fill-zinc-100 stroke-zinc-400" strokeWidth="1.5" />
+          <text x="575" y="638" textAnchor="middle" className="fill-zinc-800 text-[12px] font-semibold">Invoice generated at cycle end</text>
         </svg>
       </div>
 
