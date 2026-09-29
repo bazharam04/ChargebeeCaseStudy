@@ -582,3 +582,49 @@ export const implementationFlowSteps: ImplementationFlowStep[] = [
       "The same usage event is published to an event queue in parallel — decoupled, high-throughput ingestion instead of direct synchronous writes (addressing UBB-2's scale problem). The queue feeds the Real-Time Balance cache to keep it in sync, and Chargebee's existing batch metering/rating pipeline, unchanged, which still generates the invoice at cycle end.",
   },
 ];
+
+export const opportunityRestatement =
+  "Bucket 1 (Real-Time Enforcement & Scale) has the highest RICE score (2.03) and sits in the roadmap's 'Now' horizon (Task 5). Building it unlocks credible entry into Segments 1 & 3 — AI Coding/Dev Tool Platforms and Foundation Model/API Providers — the two fastest-growing AI-native segments, where Amberflo and Meteroid are already winning deals Chargebee is structurally disqualified from today (Task 4). This is the starting point for the team: everything below scopes how to begin building it.";
+
+export interface ScopePhase {
+  phase: string;
+  description: string;
+}
+
+export const scopePhases: ScopePhase[] = [
+  {
+    phase: "Crawl (pilot)",
+    description:
+      "One metered item type, one design-partner customer from Segment 1 or 3, real-time block/allow decision only — no self-serve balance dashboard yet. Manual reconciliation against the existing invoice is acceptable at this stage.",
+  },
+  {
+    phase: "Walk",
+    description:
+      "Multiple meter types, self-serve balance visibility for customers, automated reconciliation between the real-time path and the existing batch rating pipeline.",
+  },
+  {
+    phase: "Run",
+    description:
+      "Multi-region, a hard latency SLA the business has committed to customers, and GA availability across all UBB customers, not just the pilot segment.",
+  },
+];
+
+export interface SuccessMetric {
+  type: "Leading" | "Lagging";
+  metric: string;
+}
+
+export const successMetrics: SuccessMetric[] = [
+  { type: "Leading", metric: "Design-partner customer signed" },
+  { type: "Leading", metric: "Pilot live and processing real customer traffic" },
+  {
+    type: "Lagging",
+    metric:
+      "Number of Segment 1/3 deals where real-time enforcement was a stated blocker and is now resolved",
+  },
+  { type: "Lagging", metric: "Reduction in unbilled/leaked usage revenue" },
+  {
+    type: "Lagging",
+    metric: "Competitive win-rate against Amberflo/Meteroid in RFPs where this capability came up",
+  },
+];

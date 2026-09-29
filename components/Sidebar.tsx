@@ -107,6 +107,20 @@ export default function Sidebar() {
             Implementation Approach
           </span>
         </Link>
+
+        <Link
+          href="/scoping-metrics"
+          className={`mt-1 flex items-center gap-2 px-3 py-3 transition-colors ${
+            isActive("/scoping-metrics") ? "text-zinc-900" : "text-zinc-800 hover:text-zinc-900"
+          }`}
+        >
+          <svg viewBox="0 0 20 20" fill="none" className="h-5 w-5 shrink-0 text-zinc-500">
+            <path d="M4 16V8M10 16V4M16 16v-5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+          </svg>
+          <span className={`text-base ${isActive("/scoping-metrics") ? "font-medium" : ""}`}>
+            Scoping & Metrics
+          </span>
+        </Link>
       </nav>
 
       <div className="border-t border-zinc-200 p-3 text-xs text-zinc-400">
