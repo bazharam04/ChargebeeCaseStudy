@@ -30,7 +30,12 @@ export default function ScopingMetricsPage() {
             <h3 className="font-semibold text-blue-900">Leading</h3>
             <ul className="mt-3 list-disc space-y-1.5 pl-4 text-sm text-blue-800">
               {leading.map((m, i) => (
-                <li key={i}>{m.metric}</li>
+                <li key={i}>
+                  {m.metric}
+                  {m.definition && (
+                    <p className="mt-1 text-xs text-blue-700">{m.definition}</p>
+                  )}
+                </li>
               ))}
             </ul>
           </div>

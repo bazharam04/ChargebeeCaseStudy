@@ -612,10 +612,16 @@ export const scopePhases: ScopePhase[] = [
 export interface SuccessMetric {
   type: "Leading" | "Lagging";
   metric: string;
+  definition?: string;
 }
 
 export const successMetrics: SuccessMetric[] = [
-  { type: "Leading", metric: "Design-partner customer signed" },
+  {
+    type: "Leading",
+    metric: "Design-partner customer signed",
+    definition:
+      "A real Segment 1/3 customer has agreed in writing to co-develop and pilot the capability: a defined scope (e.g. one metered item type), shared success criteria, a feedback cadence, data-sharing terms, and whether it converts to a paid contract. Signing alone is a weak signal, so 'pilot live on real traffic' is the check that the partner is actually engaged.",
+  },
   { type: "Leading", metric: "Pilot live and processing real customer traffic" },
   {
     type: "Lagging",
@@ -627,4 +633,91 @@ export const successMetrics: SuccessMetric[] = [
     type: "Lagging",
     metric: "Competitive win-rate against Amberflo/Meteroid in RFPs where this capability came up",
   },
+];
+
+export interface SystemLoop {
+  id: string;
+  type: "Reinforcing" | "Balancing";
+  name: string;
+  path: string;
+  pmImplication: string;
+}
+
+export const systemMapIntro =
+  "The swimlane shows one transaction. A Staff PM also shows how the capability reshapes the wider system — where it compounds and where it pushes back. '+' means the two move in the same direction; '−' means they move in opposite directions.";
+
+export const systemLoops: SystemLoop[] = [
+  {
+    id: "R1",
+    type: "Reinforcing",
+    name: "Growth flywheel",
+    path: "Real-time enforcement → Segment 1/3 deals won → more AI-native customers & usage volume → revenue funds further hardening of the capability.",
+    pmImplication:
+      "Landing the first design-partner logo matters disproportionately — it starts the loop.",
+  },
+  {
+    id: "B1",
+    type: "Balancing",
+    name: "Scale drag",
+    path: "More customers & volume → more load and latency on the real-time path → more false blocks and customer friction → fewer customers.",
+    pmImplication:
+      "The event queue and balance cache exist to weaken this loop. Set a latency SLO and cap pilot volume in Crawl.",
+  },
+  {
+    id: "B2",
+    type: "Balancing",
+    name: "Strictness vs. friction",
+    path: "Stricter hard-stops → more false blocks → pressure to loosen hard-stops. Stricter hard-stops also cut leaked/unbilled revenue, so loosening brings leakage back.",
+    pmImplication:
+      "This is the fail-open vs. fail-closed decision. Mitigate with hold expiry, grace overage, and low-balance warnings before the hard stop.",
+  },
+];
+
+export interface ApiEndpoint {
+  name: string;
+  phase: "Crawl" | "Walk";
+  purpose: string;
+  sends: string[];
+  returns: string[];
+}
+
+export const apiContractIntro =
+  "A behavioral draft the PM writes and engineering formalizes (e.g. into OpenAPI). It says which calls exist and what information moves in each — not field types or versioning. Illustrative only; these are not existing Chargebee endpoints.";
+
+export const apiEndpoints: ApiEndpoint[] = [
+  {
+    name: "Reserve",
+    phase: "Crawl",
+    purpose: "Ask permission and hold an estimated amount before a metered action.",
+    sends: ["Customer", "What is being metered", "Estimated quantity", "Unique request ID"],
+    returns: ["Approved or Denied (with reason)", "Hold reference", "Remaining balance", "Hold expiry"],
+  },
+  {
+    name: "Confirm",
+    phase: "Crawl",
+    purpose: "Settle a hold with what was actually used.",
+    sends: ["Hold reference", "Actual quantity", "Unique request ID"],
+    returns: ["Amount charged", "New balance"],
+  },
+  {
+    name: "Release",
+    phase: "Crawl",
+    purpose: "Cancel a hold when the action failed or was abandoned.",
+    sends: ["Hold reference"],
+    returns: ["Confirmation", "Balance restored"],
+  },
+  {
+    name: "Get Balance",
+    phase: "Walk",
+    purpose: "Let the app or customer see what is left.",
+    sends: ["Customer", "What is being metered"],
+    returns: ["Current balance", "Amount on hold", "Low-balance flag"],
+  },
+];
+
+export const apiBusinessRules: string[] = [
+  "How long a hold lives before it auto-releases.",
+  "What happens when actual usage exceeds the hold (allow negative balance, or cap).",
+  "Repeated calls with the same request ID must be safe (no double charge).",
+  "What the app does if the service is unreachable — fail open or fail closed.",
 ];
