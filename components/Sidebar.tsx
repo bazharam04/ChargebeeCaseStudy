@@ -63,8 +63,23 @@ export default function Sidebar() {
         </ul>
 
         <Link
-          href="/prioritization"
+          href="/value-proposition"
           className={`mt-4 flex items-center gap-2 px-3 py-3 transition-colors ${
+            isActive("/value-proposition") ? "text-zinc-900" : "text-zinc-800 hover:text-zinc-900"
+          }`}
+        >
+          <svg viewBox="0 0 20 20" fill="none" className="h-5 w-5 shrink-0 text-zinc-500">
+            <rect x="2.5" y="4" width="7" height="12" rx="1.2" stroke="currentColor" strokeWidth="1.4" />
+            <circle cx="14" cy="10" r="3.5" stroke="currentColor" strokeWidth="1.4" />
+          </svg>
+          <span className={`text-base ${isActive("/value-proposition") ? "font-medium" : ""}`}>
+            Value Proposition Canvas
+          </span>
+        </Link>
+
+        <Link
+          href="/prioritization"
+          className={`mt-1 flex items-center gap-2 px-3 py-3 transition-colors ${
             isActive("/prioritization") ? "text-zinc-900" : "text-zinc-800 hover:text-zinc-900"
           }`}
         >
