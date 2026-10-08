@@ -721,3 +721,67 @@ export const apiBusinessRules: string[] = [
   "Repeated calls with the same request ID must be safe (no double charge).",
   "What the app does if the service is unreachable — fail open or fail closed.",
 ];
+
+export const valueCanvasCustomer = {
+  name: "AI-native company with usage or hybrid pricing",
+  segments: "Segments 1, 3 and partly 4",
+  buyer: "CFO or Head of Finance / RevOps (economic buyer)",
+  users: "Product / engineering (instrument usage) and finance ops (reconcile invoices)",
+};
+
+export const valueCanvasProfile = {
+  jobs: [
+    "Launch and change pricing (seats, credits, overage) quickly",
+    "Meter usage accurately and bill it correctly",
+    "Keep AI compute costs from eating margin",
+    "Give customers predictable, trustworthy bills",
+    "Close the books and recognise revenue with confidence",
+  ],
+  pains: [
+    "Heavy users burn through credits and the vendor eats the cost (UBB-1)",
+    "No hard stop at zero balance, so overage is a surprise for both sides (UBB-1)",
+    "Metering and rating at extreme volume and sub-cent prices doesn't scale (UBB-2)",
+    "Every pricing change needs engineering work; mid-term changes wait for renewal (CB-5, CB-1)",
+    "Can't override limits per customer, meter trials, or pause metered plans (CB-7, CB-3, CB-6)",
+    "Can't fix bad usage data or prove a billable outcome (CB-9, UBB-3)",
+    "Engineers build billing glue instead of product",
+  ],
+  gains: [
+    "Price changes shipped in days, not quarters",
+    "Margin protection with predictable gross margin per plan",
+    "Bills customers trust, with fewer disputes",
+    "Finance close without manual reconciliation",
+    "One platform for seats, usage and contracts as the model evolves",
+  ],
+};
+
+export const valueCanvasMap = {
+  productsServices: [
+    "Real-time balance and enforcement: hard stop, throttle, top-up (UBB-1)",
+    "High-scale metering and rating (UBB-2)",
+    "Usage billing that works with ramps, add-ons, mid-term changes, trials and pause/resume (CB-1 to CB-7)",
+    "Outcome validation, audit trail and usage correction (UBB-3, CB-9)",
+    "Existing strengths: CPQ, contracts, dunning, tax, rev-rec, invoicing",
+  ],
+  painRelievers: [
+    "Hard stop and alerts at pool or balance exhaustion",
+    "Customer-visible live balance and top-up flow",
+    "Real-time ingestion and balance engine for scale and sub-cent rating",
+    "Mid-term plan changes and ramps that work with usage",
+    "Entitlement overrides, trial metering, pause/resume",
+    "Usage correction, audit trail and outcome validation",
+  ],
+  gainCreators: [
+    "Pricing agility without re-platforming",
+    "Predictable margin through plan-scoped allowances and guardrails",
+    "Fewer disputes through live balances and audit trails",
+    "A single platform that grows from seats to usage to outcomes",
+    "Less engineering time spent on billing",
+  ],
+};
+
+export const valueCanvasFit =
+  "For AI-native companies whose pricing is hybrid and whose costs are variable, Chargebee becomes the billing platform that enforces limits in real time and lets them change pricing without engineering work, so they protect margin and keep customers' trust.";
+
+export const valueCanvasCaveat =
+  "Jobs, pains and gains are hypotheses drawn from the segment analysis and gap list, not customer interviews. Validate with customers before committing.";
