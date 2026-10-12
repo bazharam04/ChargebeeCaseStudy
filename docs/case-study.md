@@ -456,14 +456,17 @@ A behavioral draft the PM writes and engineering formalizes (e.g. into OpenAPI).
 
 | API | Phase | Purpose | App sends | Service returns |
 |-----|-------|---------|-----------|-----------------|
-| **Ingest Events** | Foundation | Send usage events into the pipeline in batches. | Batch of events, each with a unique transaction ID, customer, event type, timestamp and properties | Accepted or rejected per event (with reason); Duplicate indication |
+| **Ingest Events** | Foundation | Send usage events into the pipeline in batches. | Batch of events, each with a unique transaction ID, customer (or a customer alias, so senders don't need Chargebee IDs), event type, timestamp and properties | Accepted or rejected per event (with reason); Duplicate indication |
 | **Get Usage** | Foundation | Read current usage against a meter for a customer and period. | Customer; Meter; Period | Current usage; Last-updated time; Threshold status |
-| **Reserve** | Crawl | Ask permission and hold an estimated amount before a metered action | Customer, what is being metered, estimated quantity, unique request ID | Approved or Denied (with reason), hold reference, remaining balance, hold expiry |
+| **Correct Usage** | Foundation | Fix or remove bad usage already recorded (addresses CB-9). | Customer, meter, the events or time window to correct, replacement or void instruction, reason | Corrected totals; Audit entry |
+| **Reserve** | Crawl | Ask permission and hold an estimated amount before a metered action | Customer, what is being metered, estimated quantity, unique request ID | Approved or Denied (with reason), or Would-deny in shadow mode (logged, not enforced); hold reference, remaining balance, hold expiry |
 | **Confirm** | Crawl | Settle a hold with what was actually used | Hold reference, actual quantity, unique request ID | Amount charged, new balance |
 | **Release** | Crawl | Cancel a hold when the action failed or was abandoned | Hold reference | Confirmation, balance restored |
 | **Get Balance** | Walk | Let the app or customer see what's left | Customer, what is being metered | Current balance, amount on hold, low-balance flag |
 
-Business rules the contract must state (PM decisions): how long a hold lives before auto-release; what happens when actual usage exceeds the hold; whether repeated calls with the same request ID are safe (they should be); what the app does if the service is unreachable (fail open or closed).
+Supporting capabilities (not detailed here; engineering shapes these): define meters (count, sum, max, unique, latest); search events and read ingest status (lag, rejected events); replay or backfill raw events after a meter changes; configure threshold alerts and webhooks (low balance, limit reached, would-have-blocked); and top-up or auto-recharge, delivered through the hosted out-of-credits page in the Walk phase.
+
+Business rules the contract must state (PM decisions): whether shadow mode is on by default for a new customer; how long a hold lives before auto-release; what happens when actual usage exceeds the hold; whether repeated calls with the same request ID are safe (they should be); what the app does if the service is unreachable (fail open or closed).
 
 Ingest-side rules the contract must also state: the maximum events per request and the response when a batch is partly rejected; how long a transaction ID is remembered so a replayed event is not counted twice; how old a backdated event may be and how a late event changes totals already read; and what happens to rejected events (returned with a reason, held for review, or dropped).
 
