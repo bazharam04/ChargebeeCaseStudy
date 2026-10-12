@@ -25,7 +25,6 @@ export default function ValuePage() {
             <article key={v.horizonId} className="rounded-lg border border-zinc-200 bg-white p-5">
               <div className="flex flex-wrap items-baseline gap-2">
                 <h2 className="font-semibold text-zinc-900">{horizon.name}</h2>
-                <span className="text-xs font-medium text-zinc-500">{v.investment}</span>
               </div>
               <p className="mt-2 text-sm font-medium text-zinc-800">{v.valueType}</p>
               <p className="mt-2 text-sm text-zinc-600">

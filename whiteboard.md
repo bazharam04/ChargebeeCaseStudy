@@ -66,7 +66,7 @@ With the current trend, usage-based billing is the one that is growing. It alrea
 
 ## 3. AI-Native ICP Segments
 
-Six segments, chosen so each represents a genuinely different **billing mechanic**, not just a different vertical. Each one demands a different capability from the platform.
+Seven segments, chosen so each represents a genuinely different **billing mechanic**, not just a different vertical. Each one demands a different capability from the platform.
 
 | # | Segment | Examples | Billing shape | Why distinct |
 |---|---|---|---|---|
@@ -76,6 +76,7 @@ Six segments, chosen so each represents a genuinely different **billing mechanic
 | 4 | **Outcome-based AI platforms** | Intercom Fin | Per resolved outcome ($0.99 per resolution, $9.99 per qualified lead), $49/mo plan bundling 50 resolutions | The billable unit is a business outcome defined by the customer's product logic, so Chargebee must ingest an external outcome signal |
 | 5 | **Vertical enterprise AI-native** | Harvey (legal AI) | No public pricing; sales-quoted seats, 20-50 seat minimums, 12-month terms | A contract-management problem, not a metering problem |
 | 6 | **Seat-based SaaS layering in AI** | Notion AI, Salesforce Agentforce | AI gated into an existing seat tier or sold as a metered add-on (Notion Custom Agents $10/1,000 credits; Salesforce Flex Credits $500/100K) | Must coexist with a legacy seat contract and its renewal cycle |
+| 7 | **AI infrastructure / inference and compute providers** | CoreWeave, Together AI, Fireworks AI | On-demand per GPU-hour, reserved contracts (up to about 60% off), spot capacity; per-token serverless plus dedicated endpoints and Provisioned Throughput Units (third-party figures) | Reserved or provisioned capacity commitment with on-demand burst on top, across mixed units (GPU-hours, tokens, throughput units) |
 
 ### Spectrum to draw
 

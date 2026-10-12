@@ -1,4 +1,4 @@
-import { gapBuckets, riceScores, roadmapHorizons } from "@/lib/content";
+import { gapBuckets, riceScores, roadmapHorizons, roadmapSequencingNote } from "@/lib/content";
 
 export default function PrioritizationPage() {
   const maxScore = riceScores[0].score;
@@ -19,7 +19,7 @@ export default function PrioritizationPage() {
         <h2 className="text-lg font-semibold text-zinc-900">RICE Scoring</h2>
         <p className="mt-2 max-w-3xl text-sm text-zinc-500">
           Each bucket scored on Reach (1-10), Impact (0.25-3), Confidence (%), and Effort
-          (person-months). RICE = (Reach × Impact × Confidence) / Effort.
+          (T-shirt size: S = 1, M = 2, L = 4, a relative weight and not a time estimate). RICE = (Reach × Impact × Confidence) / Effort.
         </p>
 
         <div className="mt-4 overflow-x-auto rounded-lg border border-zinc-200 bg-white">
@@ -30,7 +30,7 @@ export default function PrioritizationPage() {
                 <th className="px-4 py-3 font-medium">Reach</th>
                 <th className="px-4 py-3 font-medium">Impact</th>
                 <th className="px-4 py-3 font-medium">Confidence</th>
-                <th className="px-4 py-3 font-medium">Effort (mo)</th>
+                <th className="px-4 py-3 font-medium">Effort (S/M/L)</th>
                 <th className="px-4 py-3 font-medium">RICE Score</th>
               </tr>
             </thead>
@@ -61,7 +61,7 @@ export default function PrioritizationPage() {
                       {Math.round(row.confidence * 100)}%
                     </td>
                     <td className="px-4 py-4 text-zinc-600" title={row.effortRationale}>
-                      {row.effort}
+                      {row.effortSize}
                     </td>
                     <td className="px-4 py-4 font-semibold text-zinc-900">{row.score}</td>
                   </tr>
@@ -97,7 +97,7 @@ export default function PrioritizationPage() {
 
       <section>
         <h2 className="text-lg font-semibold text-zinc-900">Roadmap Horizons</h2>
-        <div className="mt-4 grid gap-4 sm:grid-cols-3">
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
           {roadmapHorizons.map((horizon) => (
             <div key={horizon.id} className="rounded-lg border border-zinc-200 bg-white p-5">
               <h3 className="font-semibold text-zinc-900">{horizon.name}</h3>
@@ -110,6 +110,9 @@ export default function PrioritizationPage() {
             </div>
           ))}
         </div>
+        <p className="mt-4 max-w-3xl rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
+          {roadmapSequencingNote}
+        </p>
       </section>
     </div>
   );

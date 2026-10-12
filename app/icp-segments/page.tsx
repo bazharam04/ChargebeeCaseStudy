@@ -13,7 +13,7 @@ export default function IcpSegmentsPage() {
           ICP Segments &amp; Billing Needs
         </h1>
         <p className="mt-2 max-w-3xl text-sm text-zinc-500">
-          Six segments, each representing a genuinely different billing mechanic, mapped to
+          Seven segments, each representing a genuinely different billing mechanic, mapped to
           their billing-perspective goal, the billing needs each one demands, and the
           preferred model for serving it.
         </p>
