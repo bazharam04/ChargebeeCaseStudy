@@ -1,4 +1,4 @@
-import { apiBusinessRules, apiContractIntro, apiEndpoints } from "@/lib/content";
+import { apiBusinessRules, apiContractIntro, apiEndpoints, apiSupportingCapabilities } from "@/lib/content";
 
 export default function ApiContractPage() {
   return (
@@ -45,6 +45,18 @@ export default function ApiContractPage() {
           </div>
         ))}
       </div>
+
+      <section className="rounded-lg border border-zinc-200 bg-white p-5">
+        <h2 className="font-semibold text-zinc-900">Supporting capabilities</h2>
+        <p className="mt-1 text-sm text-zinc-600">
+          Not detailed here; engineering shapes these.
+        </p>
+        <ul className="mt-3 list-disc space-y-1.5 pl-4 text-sm text-zinc-700">
+          {apiSupportingCapabilities.map((c) => (
+            <li key={c}>{c}</li>
+          ))}
+        </ul>
+      </section>
 
       <section className="rounded-lg border border-amber-200 bg-amber-50 p-5">
         <h2 className="font-semibold text-amber-900">Business rules the contract must state</h2>

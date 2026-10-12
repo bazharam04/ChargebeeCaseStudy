@@ -940,7 +940,7 @@ export const apiEndpoints: ApiEndpoint[] = [
     name: "Ingest Events",
     phase: "Foundation",
     purpose: "Send usage events into the pipeline in batches.",
-    sends: ["Batch of events, each with a unique transaction ID, customer, event type, timestamp and properties"],
+    sends: ["Batch of events, each with a unique transaction ID, customer (or a customer alias, so senders do not need Chargebee IDs), event type, timestamp and properties"],
     returns: ["Accepted or rejected per event (with reason)", "Duplicate indication"],
   },
   {
@@ -951,11 +951,18 @@ export const apiEndpoints: ApiEndpoint[] = [
     returns: ["Current usage", "Last-updated time", "Threshold status"],
   },
   {
+    name: "Correct Usage",
+    phase: "Foundation",
+    purpose: "Fix or remove bad usage already recorded (addresses CB-9).",
+    sends: ["Customer", "Meter", "Events or time window to correct", "Replace or void instruction", "Reason"],
+    returns: ["Corrected totals", "Audit entry"],
+  },
+  {
     name: "Reserve",
     phase: "Crawl",
     purpose: "Ask permission and hold an estimated amount before a metered action.",
     sends: ["Customer", "What is being metered", "Estimated quantity", "Unique request ID"],
-    returns: ["Approved or Denied (with reason)", "Hold reference", "Remaining balance", "Hold expiry"],
+    returns: ["Approved or Denied (with reason), or Would-deny in shadow mode (logged, not enforced)", "Hold reference", "Remaining balance", "Hold expiry"],
   },
   {
     name: "Confirm",
@@ -980,7 +987,16 @@ export const apiEndpoints: ApiEndpoint[] = [
   },
 ];
 
+export const apiSupportingCapabilities: string[] = [
+  "Define meters (count, sum, max, unique count, latest).",
+  "Search events and read ingest status (lag, rejected events).",
+  "Replay or backfill raw events after a meter definition changes.",
+  "Configure threshold alerts and webhooks (low balance, limit reached, would-have-blocked).",
+  "Top-up and auto-recharge, delivered through the hosted out-of-credits page in the Walk phase.",
+];
+
 export const apiBusinessRules: string[] = [
+  "Whether shadow mode is on by default for a new customer.",
   "How long a hold lives before it auto-releases.",
   "What happens when actual usage exceeds the hold (allow negative balance, or cap).",
   "Repeated calls with the same request ID must be safe (no double charge).",
