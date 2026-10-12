@@ -25,6 +25,20 @@ export default function Sidebar() {
       </div>
 
       <nav className="flex-1 overflow-y-auto px-2 pb-6">
+        <Link
+          href="/changing-paradigm"
+          className={`flex items-center gap-2 px-3 py-3 transition-colors ${
+            isActive("/changing-paradigm") ? "text-zinc-900" : "text-zinc-800 hover:text-zinc-900"
+          }`}
+        >
+          <svg viewBox="0 0 20 20" fill="none" className="h-5 w-5 shrink-0 text-zinc-500">
+            <path d="M3 10h11M10 5l5 5-5 5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          <span className={`text-base ${isActive("/changing-paradigm") ? "font-medium" : ""}`}>
+            Changing Paradigm
+          </span>
+        </Link>
+
         <div className="flex items-center gap-2 px-3 py-3 text-zinc-800">
           <svg
             viewBox="0 0 20 20"
@@ -124,16 +138,16 @@ export default function Sidebar() {
         </Link>
 
         <Link
-          href="/scoping-metrics"
+          href="/scope"
           className={`mt-1 flex items-center gap-2 px-3 py-3 transition-colors ${
-            isActive("/scoping-metrics") ? "text-zinc-900" : "text-zinc-800 hover:text-zinc-900"
+            isActive("/scope") ? "text-zinc-900" : "text-zinc-800 hover:text-zinc-900"
           }`}
         >
           <svg viewBox="0 0 20 20" fill="none" className="h-5 w-5 shrink-0 text-zinc-500">
             <path d="M4 16V8M10 16V4M16 16v-5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
           </svg>
-          <span className={`text-base ${isActive("/scoping-metrics") ? "font-medium" : ""}`}>
-            Scoping & Metrics
+          <span className={`text-base ${isActive("/scope") ? "font-medium" : ""}`}>
+            Scope
           </span>
         </Link>
 

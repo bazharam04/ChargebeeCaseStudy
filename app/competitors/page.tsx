@@ -1,4 +1,9 @@
-import { bucketCompetitors, competitiveFinding, gapBuckets } from "@/lib/content";
+import {
+  bucketCompetitors,
+  capabilityCompetitors,
+  competitiveFinding,
+  gapBuckets,
+} from "@/lib/content";
 
 export default function CompetitorsPage() {
   return (
@@ -40,6 +45,42 @@ export default function CompetitorsPage() {
             })}
           </tbody>
         </table>
+      </div>
+
+      <p className="-mt-3 text-xs text-zinc-500">
+        Only the Bucket 1 row was re-researched in the latest pass; rows for Buckets 2–5 come
+        from the earlier draft and were not re-verified.
+      </p>
+
+      <div>
+        <h2 className="font-semibold text-zinc-900">
+          Bucket 1 in detail: how competitors handle scale (UBB-2) and enforcement (UBB-1)
+        </h2>
+        <div className="mt-3 overflow-x-auto rounded-lg border border-zinc-200 bg-white">
+          <table className="w-full min-w-[900px] text-left text-sm">
+            <thead>
+              <tr className="border-b border-zinc-200 bg-zinc-50 text-xs uppercase tracking-wide text-zinc-500">
+                <th className="w-40 px-4 py-3 font-medium">Vendor</th>
+                <th className="px-4 py-3 font-medium">Scale and ingestion (UBB-2)</th>
+                <th className="px-4 py-3 font-medium">Enforcement (UBB-1)</th>
+                <th className="w-44 px-4 py-3 font-medium">Evidence</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-zinc-100">
+              {capabilityCompetitors.map((c) => (
+                <tr key={c.name} className="align-top hover:bg-zinc-50">
+                  <td className="px-4 py-4">
+                    <div className="font-medium text-zinc-900">{c.name}</div>
+                    <div className="mt-1 text-xs text-zinc-500">{c.category}</div>
+                  </td>
+                  <td className="px-4 py-4 text-zinc-600">{c.scale}</td>
+                  <td className="px-4 py-4 text-zinc-600">{c.enforcement}</td>
+                  <td className="px-4 py-4 text-xs text-zinc-500">{c.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <div className="rounded-lg border border-amber-200 bg-amber-50 p-5">

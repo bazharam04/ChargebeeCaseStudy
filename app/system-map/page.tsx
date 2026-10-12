@@ -63,7 +63,7 @@ export default function SystemMapPage() {
 
           <rect x="530" y="135" width="200" height="50" rx="10" className="fill-emerald-50 stroke-emerald-400" strokeWidth="1.5" />
           <text x="630" y="158" textAnchor="middle" className="fill-emerald-900 text-[12px] font-semibold">Segment 1/3 deals won</text>
-          <text x="630" y="173" textAnchor="middle" className="fill-emerald-700 text-[10px]">credible vs. Amberflo / Meteroid</text>
+          <text x="630" y="173" textAnchor="middle" className="fill-emerald-700 text-[10px]">credible vs. Metronome / Orb</text>
 
           <rect x="530" y="295" width="200" height="50" rx="10" className="fill-emerald-50 stroke-emerald-400" strokeWidth="1.5" />
           <text x="630" y="318" textAnchor="middle" className="fill-emerald-900 text-[12px] font-semibold">AI-native customers</text>
@@ -103,6 +103,57 @@ export default function SystemMapPage() {
             <text x="200" y="4" className="fill-zinc-500 text-[10px]">Balancing loop (B)</text>
             <text x="340" y="4" className="fill-zinc-500 text-[10px]">+ same direction · − opposite direction</text>
           </g>
+        </svg>
+      </div>
+
+      <div className="overflow-x-auto rounded-lg border border-zinc-200 bg-white p-6">
+        <p className="mb-2 text-sm font-medium text-zinc-900">
+          R2 · Event-data flywheel (UBB-2 feeds UBB-1)
+        </p>
+        <svg viewBox="0 0 760 250" className="mx-auto w-full max-w-3xl">
+          <defs>
+            <marker
+              id="r2-arrow"
+              viewBox="0 0 10 10"
+              refX="8"
+              refY="5"
+              markerWidth="6"
+              markerHeight="6"
+              orient="auto-start-reverse"
+            >
+              <path d="M0 0L10 5L0 10z" className="fill-zinc-400" />
+            </marker>
+          </defs>
+
+          {/* Edges */}
+          <line x1="270" y1="55" x2="490" y2="55" className="stroke-emerald-500" strokeWidth="1.5" markerEnd="url(#r2-arrow)" />
+          <text x="372" y="45" className="fill-zinc-700 text-[14px] font-semibold">+</text>
+          <line x1="610" y1="85" x2="610" y2="165" className="stroke-emerald-500" strokeWidth="1.5" markerEnd="url(#r2-arrow)" />
+          <text x="622" y="130" className="fill-zinc-700 text-[14px] font-semibold">+</text>
+          <line x1="490" y1="195" x2="270" y2="195" className="stroke-emerald-500" strokeWidth="1.5" markerEnd="url(#r2-arrow)" />
+          <text x="372" y="187" className="fill-zinc-700 text-[14px] font-semibold">+</text>
+          <line x1="150" y1="165" x2="150" y2="85" className="stroke-emerald-500" strokeWidth="1.5" markerEnd="url(#r2-arrow)" />
+          <text x="132" y="130" className="fill-zinc-700 text-[14px] font-semibold">+</text>
+
+          {/* Nodes */}
+          <rect x="30" y="30" width="240" height="55" rx="10" className="fill-purple-50 stroke-purple-400" strokeWidth="1.5" />
+          <text x="150" y="54" textAnchor="middle" className="fill-purple-900 text-[12px] font-semibold">More usage events sent</text>
+          <text x="150" y="70" textAnchor="middle" className="fill-purple-700 text-[10px]">through the UBB-2 pipeline</text>
+
+          <rect x="490" y="30" width="240" height="55" rx="10" className="fill-purple-50 stroke-purple-400" strokeWidth="1.5" />
+          <text x="610" y="54" textAnchor="middle" className="fill-purple-900 text-[12px] font-semibold">Better readings</text>
+          <text x="610" y="70" textAnchor="middle" className="fill-purple-700 text-[10px]">freshness, late events, bursts</text>
+
+          <rect x="490" y="165" width="240" height="55" rx="10" className="fill-blue-100 stroke-blue-400" strokeWidth="1.5" />
+          <text x="610" y="189" textAnchor="middle" className="fill-blue-900 text-[12px] font-semibold">Better thresholds &amp; hold sizes</text>
+          <text x="610" y="205" textAnchor="middle" className="fill-blue-700 text-[10px]">fewer false blocks</text>
+
+          <rect x="30" y="165" width="240" height="55" rx="10" className="fill-emerald-50 stroke-emerald-400" strokeWidth="1.5" />
+          <text x="150" y="189" textAnchor="middle" className="fill-emerald-900 text-[12px] font-semibold">More trust in the hard stop</text>
+          <text x="150" y="205" textAnchor="middle" className="fill-emerald-700 text-[10px]">customers connect more traffic</text>
+
+          <circle cx="380" cy="125" r="17" className="fill-emerald-100 stroke-emerald-500" strokeWidth="1.5" />
+          <text x="380" y="130" textAnchor="middle" className="fill-emerald-800 text-[12px] font-bold">R2</text>
         </svg>
       </div>
 
