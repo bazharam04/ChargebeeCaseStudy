@@ -152,21 +152,6 @@ export default function Sidebar() {
         </Link>
 
         <Link
-          href="/system-map"
-          className={`mt-1 flex items-center gap-2 px-3 py-3 transition-colors ${
-            isActive("/system-map") ? "text-zinc-900" : "text-zinc-800 hover:text-zinc-900"
-          }`}
-        >
-          <svg viewBox="0 0 20 20" fill="none" className="h-5 w-5 shrink-0 text-zinc-500">
-            <path d="M15 7a6 6 0 0 0-10-2M5 13a6 6 0 0 0 10 2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-            <path d="M5 2.5V5h2.5M15 17.5V15h-2.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          <span className={`text-base ${isActive("/system-map") ? "font-medium" : ""}`}>
-            System Map
-          </span>
-        </Link>
-
-        <Link
           href="/api-contract"
           className={`mt-1 flex items-center gap-2 px-3 py-3 transition-colors ${
             isActive("/api-contract") ? "text-zinc-900" : "text-zinc-800 hover:text-zinc-900"
